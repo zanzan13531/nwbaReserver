@@ -1,3 +1,4 @@
+import json
 import requests
 from webbot import Browser
 
@@ -7,10 +8,10 @@ zenPlannerLoginPage = "https://northwestbadmintonacademy.sites.zenplanner.com/lo
 username = ""
 password = ""
 
-with open("username.txt", encoding = 'utf-8') as f:
-    username = f.read()
-with open("password.txt", encoding = 'utf-8') as f:
-    password = f.read()
+with open("login.json", "r") as f:
+    data = json.load(f)
+    username = data["username"]
+    password = data["password"]
 
 
 web = Browser()
@@ -32,6 +33,8 @@ if (web.exists("My Profile")):
     print("Successfully logged in")
 else:
     print("An error occurred")
+
+
 
 
 # web.type('hello its me')  # or web.press(web.Key.SHIFT + 'hello its me')
